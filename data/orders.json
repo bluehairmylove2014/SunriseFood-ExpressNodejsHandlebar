@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "5c8a23de2f8fb814b56fa18e",
+    "userID": "5c8a1ec62f8fb814b56fa183",
+    "products": [
+      {
+        "productID": "5c8a23412f8fb814b56fa18c",
+        "quantity": 1
+      }
+    ],        
+    "status": "Đang giao",
+    "totalPrice": 369000
+  },
+  {
+    "_id": "638eb06df38321b8400aec0c",
+    "userID": "5c8a1dfa2f8fb814b56fa181",
+    "products": [
+      {
+        "productID": "5c8a23412f8fb814b56fa18c",
+        "quantity": 1
+      },
+      {
+        "productID": "5c8a20d32f8fb814b56fa187",
+        "quantity": 2
+      }
+    ],        
+    "status": "Đang giao",
+    "totalPrice": 369000
+  }
+]

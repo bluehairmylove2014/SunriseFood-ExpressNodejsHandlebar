@@ -1,0 +1,190 @@
+<div class="bg-white">
+    <div class="container pt-5">
+        <p class="xlg-title mb-0">RESULTS</p>
+        <p class="me-title opacity-75">Price and other details may vary based on
+            product size and colour.</p>
+        <hr />
+        <div class="row mt-3">
+            <div class="col-12 col-md-4">
+                <i class="bi bi-sliders2-vertical me-title">&#160 Bộ lọc</i>
+                <div class="row mt-4">
+                    <p class="lger-title pb-2">Khoảng giá</p>
+                    <form class="d-flex" class="form-floating" id="price-sort-form">
+                        <div class="col-6 pe-1">
+                            <input name="price-from" type="number" class="form-control" id="minprice-filter" min="0"
+                                placeholder="" />
+                            <label for="minprice-filter">Từ (.000 VNĐ)</label>
+                        </div>
+                        <div class="col-6 ps-1">
+                            <input name="price-to" type="number" class="form-control" id="maxprice-filter" min="0"
+                                placeholder="" />
+                            <label for="maxprice-filter">Đến (.000 VNĐ)</label>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="row mt-4">
+                    <p class="lger-title pb-2">Sắp xếp theo</p>
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="highrate-radio"
+                                value="default" />
+                            <label class="form-check-label" for="highrate-radio">
+                                Nổi bật nhất
+                            </label>
+                        </div>
+                    </div>
+                    {{! <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="bestseller-radios">
+                            <label class="form-check-label" for="bestseller-radios">
+                                Bán chạy nhất
+                            </label>
+                        </div>
+                    </div> }}
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="created-at-radio"
+                                value="created-at" />
+                            <label class="form-check-label" for="created-at-radio">
+                                Ngày đăng
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="lowprice-radio"
+                                value="low-to-high" />
+                            <label class="form-check-label" for="lowprice-radio">
+                                Giá thấp
+                                <i class="bi bi-arrow-right m-auto"></i>
+                                cao
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="highprice-radio"
+                                value="high-to-low" />
+                            <label class="form-check-label" for="highprice-radio">
+                                Giá cao
+                                <i class="bi bi-arrow-right"></i>
+                                thấp
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <p class="lger-title pb-2">Thương hiệu</p>
+                    {{#each restaurant_logo}}
+                    <div class="col-6 mt-2 mb-2">
+                        <div class="brand-hover">
+                            <a name="manufacturer" href="javascript:;" class="erase-underline">
+                                <div class="row">
+                                    <div class="col-12 col-lg-4 ps-0 d-flex align-items-center justify-content-center">
+                                        <input type="checkbox" name="manufacturer" data-search="{{slug}}"
+                                            value="{{slug}}">
+                                        <img src={{img}} class="itdetail-icon" />
+                                    </div>
+                                    <div class="col-12 col-lg-8 ps-0 d-flex align-items-center justify-content-center">
+                                        <span class="me-title text-black text-center">{{name}}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <hr class="list-splitline mb-5" />
+                <form id="category-filter" class="mt-3">
+                    <label for="category">Chọn loại món ăn:</label>
+                    <select class="p-2 fs-6 rounded-pill" name="category" id="category">
+                        <option value="All">Tất cả</option>
+                        <option value="Cơm">Cơm</option>
+                        <option value="Phở">Phở</option>
+                        <option value="Bún">Bún</option>
+                        <option value="Hủ_tíu">Hủ tíu</option>
+                        <option value="Bánh_canh">Bánh canh</option>
+                        <option value="Lẩu">Lẩu</option>
+                        <option value="general">Khác</option>
+                    </select>
+                    <br><br>
+                    <button
+                        class="btn-filter fw-bold fs-6 text-white border border-gray-50 bg-primary py-2 px-3 rounded-medium"
+                        type="button">Lựa chọn</button>
+                </form>
+            </div>
+            <div class="col-12 col-md-8">
+                <div id="food-list" class="row">
+                </div>
+
+            </div>
+        </div>
+        <div class="row py-4">
+            <div class="col-4"></div>
+            <div class="col-8 d-flex justify-content-center align-items-center bg-white">
+
+                <ul id="pagination-list" class="pagination-list d-flex align-items-center bg-white">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="products-template" type="text/x-handlebars-template">
+\{{#each foods}}
+    <div class="col-6 col-lg-4 pb-3">
+        <div class="card card-hover">
+            <a href="/products/\{{slug}}"><img src="\{{foodThumbnail}}"
+                    class="card-img-top p-3" /></a>
+            <div class="card-body">
+                <a href="/products/\{{slug}}" class="erase-underline">
+                    <p class="me-title text-lightblue">\{{name}}</p>
+                </a>
+                {{!-- <span class="ratings">
+                    \{{#loops fstar}}
+                    <i class="bi bi-star-fill rating-color"></i>
+                    \{{/loops}}
+                    \{{#loops hstar}}
+                    <i class="bi bi-star-half rating-color"></i>
+                    \{{/loops}}
+                    \{{#loops nstar}}
+                    <i class="bi bi-star"></i>
+                    \{{/loops}}
+                </span> --}}
+                {{!-- <p class="review-count">\{{rvcount}}</p> --}}
+                <p class="sm-title">Chỉ từ
+                    <span class="rtab-money">\{{{toPrice price}}} VNĐ</span>
+                </p>
+                <p class="sm-title">
+                    <span class="text-black">Nhà hàng: \{{manufacturer}}</span>
+                </p>
+                <div class="text-center">
+                    <a href="/products/\{{slug}}"><button class="btn btn-outline-dark rtab-detail-button">Xem chi tiết</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+\{{/each}}
+</script>
+
+<script id="pagination-template" type="text/x-handlebars-template">
+<li class="pagination-item">
+    <i class="page-item fa-solid fa-angles-left" value=\{{start}} data-query="page=\{{start}}"></i>
+</li>
+<li class="pagination-item">
+    <i class="page-item fa-solid fa-angle-left" value=\{{prev}} data-query="page=\{{prev}}"></i>
+</li>
+\{{#each links}}
+    <li class="pagination-item">
+        <a class="page-item \{{#if selected}}selected\{{/if}}" href="javascript:;" value=\{{pageNumber}}
+            data-query="page=\{{pageNumber}}">\{{pageNumber}}</a>
+    </li>
+\{{/each}}
+<li class="pagination-item">
+    <i class="page-item fa-solid fa-angle-right" value=\{{next}} data-query="page=\{{next}}"></i>
+</li>
+<li class="pagination-item">
+    <i class="page-item fa-solid fa-angles-right" value=\{{end}} data-query="page=\{{end}}"></i>
+</li>
+</script>

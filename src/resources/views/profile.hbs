@@ -1,0 +1,78 @@
+<div class="profile-wrapper">
+  <main class="main">
+    <div class="user-view">
+      <nav class="user-view__menu">
+        <ul class="side-nav">
+          <li class="side-nav--active"><a href="#"><svg>
+                <use xlink:href="img/icons.svg#icon-settings"></use>
+              </svg>Thông tin tài khoản</a></li>
+          {{#if_cond user.role '===' 'user'}}
+          <li><a href="/orders"><svg>
+                <use xlink:href="img/icons.svg#icon-briefcase"></use>
+              </svg>Đơn hàng của tôi</a></li>
+          {{/if_cond}}
+          <li><a href="#"><svg>
+                <use xlink:href="img/icons.svg#icon-star"></use>
+              </svg>Cài đặt nâng cao</a></li>
+        </ul>
+        {{!-- <div class="admin-nav">
+          <h5 class="admin-nav__heading">Admin</h5>
+          <ul class="side-nav">
+            <li><a href="#"><svg>
+                  <use xlink:href="img/icons.svg#icon-map"></use>
+                </svg>Manage tours</a></li>
+            <li><a href="#"><svg>
+                  <use xlink:href="img/icons.svg#icon-users"></use>
+                </svg>Manage users</a></li>
+            <li><a href="#"><svg>
+                  <use xlink:href="img/icons.svg#icon-star"></use>
+                </svg>Manage reviews</a></li>
+            <li><a href="#"><svg>
+                  <use xlink:href="img/icons.svg#icon-briefcase"></use>
+                </svg></a></li>
+          </ul>
+        </div> --}}
+      </nav>
+      <div class="user-view__content">
+        <div class="user-view__form-container">
+          <h2 class="heading-secondary ma-bt-md">Thông tin cá nhân của bạn</h2>
+          <form class="form form-user-data">
+            <div class="form__group"><label class="form__label" for="name">Tên</label><input class="form__input"
+                id="name" type="text" value="{{user.name}}" required="required" /></div>
+            <div class="form__group ma-bt-md">
+              <label class="form__label" for="email">Địa chỉ email</label>
+              <input class="form__input" id="email" type="email" value="{{user.email}}" required=" required">
+            </div>
+            <div class="form__group form__photo-upload">
+              <img class="form__user-photo" id="avatar-display" src="{{user.photo}}" alt="User photo" />
+              {{#if_cond user.type '===' 'local'}}
+              <a class="btn-text" href=""><label for="avatar-input">Thay đổi ảnh đại diện</label></a>
+              <input type="file" accept="*image/*" id="avatar-input" name="photo" hidden>
+              {{/if_cond}}
+            </div>
+            <p class="create-product-error-message text-center text-danger fs-6 font-italic mt-2 mb-2"></p>
+            <div class="form__group right"><button type="submit" class="btn btn--small btn--green">Cập nhật</button>
+            </div>
+          </form>
+        </div>
+        <div class="line">&nbsp;</div>
+        <div class="user-view__form-container">
+          <h2 class="heading-secondary ma-bt-md">Thay đổi mật khẩu</h2>
+          <form class="form form-user-settings">
+            <div class="form__group"><label class="form__label" for="password-current">Mật khẩu hiện tại</label><input
+                class="form__input" name="current-password" id="password-current" type="password" placeholder="••••••••"
+                required="required" minlength="6" /></div>
+            <div class="form__group"><label class="form__label" for="password">Mật khẩu mới</label><input
+                class="form__input" id="password" type="password" placeholder="••••••••" required="required"
+                minlength="6" name="password" /></div>
+            <div class="form__group ma-bt-lg"><label class="form__label" for="password-confirm">Nhập lại mật khẩu
+                mới</label><input name="confirm-password" class="form__input" id="password-confirm" type="password"
+                placeholder="••••••••" required="required" minlength="6" /></div>
+            <div class="form__group right"><button type="submit" class="btn btn--small btn--green">Cập nhật</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
